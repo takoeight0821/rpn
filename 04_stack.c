@@ -51,7 +51,7 @@ int main(void)
   // 標準入力を最大255文字ずつ読み込む
   while (fgets(buf, buf_max_len, stdin) != NULL)
   {
-    source = realloc(source, strlen(source) + strlen(buf) + 1);
+    source = realloc(source, (strlen(source) + strlen(buf) + 1) * sizeof(char));
     strcat(source, buf);
   }
 

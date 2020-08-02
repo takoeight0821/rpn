@@ -21,7 +21,7 @@ int main(void)
     // sourceの領域を拡張する
     // reallocは確保した領域に第一引数の指す領域をコピーする
     // + 1 はヌル文字の分
-    source = realloc(source, strlen(source) + strlen(buf) + 1);
+    source = realloc(source, (strlen(source) + strlen(buf) + 1) * sizeof(char));
 
     // sourceの末尾にbufを追加
     strcat(source, buf);
