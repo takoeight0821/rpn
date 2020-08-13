@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
 // 次は、fgetsで読み込んだ文字列を繋いで一つの文字列（ソースコード）を作る
@@ -28,15 +27,17 @@ int main(void)
 
     /* このプログラムの実行時間は極めて短く、ソースコードも極めて小さい（どんなに多く見積もっても1MBには達しないだろう）
      * よって、メモリの開放については考える必要はない。どちらにせよプロセスが終了した時点ですべてのメモリは開放される
-     * つまり、24行目を以下のように書く必要はない
+     * つまり、23行目を以下のように書く必要はない
+     * もちろん、丁寧にfreeしてもかまわない
      *  
-     * char *new_source = realloc(source, strlen(source) + strlen(buf) + 1);
+     * char *new_source = realloc(source, (strlen(source) + strlen(buf) + 1) * sizeof(char));
      * if (new_source != source) free(source);
      * source = new_source;
      */
   }
 
-  printf("source: %s\nlength: %lu\n", source, strlen(source));
+  printf("source: %s\n", source);
+  printf("length: %lu\n", strlen(source));
 }
 
 // > echo 'hoge' | ./rpn

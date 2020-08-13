@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
 // RPN電卓
@@ -71,15 +70,18 @@ struct Stack *eval(char *tok, struct Stack *stack)
     return push(x / y, stack);
   }
 
+  // 動画では実装しなかった命令
+  // スタックトップの値を出力（ポップはしない）
   if (strcmp(tok, "p") == 0)
   {
     printf("%d", peek(stack));
     return stack;
   }
 
+  // 動画では実装しなかった命令
+  // スタックの出力
   if (strcmp(tok, "d") == 0)
   {
-    // スタックの出力
     printf("[");
     for (struct Stack *current = stack; current != NULL; current = current->next)
     {
@@ -131,4 +133,8 @@ int main(void)
   {
     stack = eval(tok, stack);
   }
+
+  // 動画の実装では最後にスタックの中身を表示していますが、
+  // この実装では d 命令でスタックの中身を表示することにしています
+  // （83行目参照）
 }
